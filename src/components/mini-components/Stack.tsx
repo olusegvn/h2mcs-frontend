@@ -5,6 +5,10 @@ type JSXprops = {
     children: JSX.Element[];
 }
 
-export const RowStack = ({children}: JSXprops) => {
-    return (<Stack direction="row" children={children}/>);
+export const SpacedStack = (props: JSXprops) => {
+    return (<Stack spacing={5} {...props}/>);
+};
+
+export const SmallSpacedStack = (props: JSXprops) => {
+    return (<Stack spacing={2} {...props}/>);
 };

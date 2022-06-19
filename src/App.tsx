@@ -1,17 +1,23 @@
 import React from 'react';
-import Index from "./components/page-components/Login";
+import Login from "./components/page-components/Login/login";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Layout from "./components/page-components/Layout";
+import Register from "./components/page-components/Register";
+import {ThemeProvider} from "@mui/material";
+import Theme from "./Theme";
 
 function App() {
     return (
       <BrowserRouter>
-        <div className="App">
-          <Routes>
-              <Route path={'/login'} element={<Index/>}/>
-              <Route path={'/'} element={<Layout/>}/>
-          </Routes>
-        </div>
+          <ThemeProvider theme={Theme}>
+            <div className="App">
+              <Routes>
+                  <Route path={'/login'} element={<Login/>}/>
+                  <Route path={'/register'} element={<Register/>}/>
+                  <Route path={'/'} element={<Layout/>}/>
+              </Routes>
+            </div>
+          </ThemeProvider>
       </BrowserRouter>
   );
 }
