@@ -1,7 +1,7 @@
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import {selectUnstyledClasses} from "@mui/base/SelectUnstyled";
 import OptionUnstyled, {optionUnstyledClasses} from "@mui/base/OptionUnstyled";
-import {PoppingsInputLabel} from "../mini-components/Typography";
+import {Monserrat300, PoppinsInputLabel} from "../mini-components/Typography";
 import {useState} from "react";
 import {styled} from "@mui/material/styles";
 import {Paper, Box} from "@mui/material";
@@ -21,11 +21,11 @@ export function Select({items, ...others}: any) {
   return (
       <CustomSelect  value={currentItem} onChange={setCurrentItem} {...others}>
         {items.map((item: string) => (
-            <PoppingsInputLabel>
+            <Monserrat300>
               <StyledOption key={item} value={item}>
                   {item}
               </StyledOption>
-            </PoppingsInputLabel>
+            </Monserrat300>
         ))}
       </CustomSelect>
 
@@ -37,14 +37,14 @@ export function Select({items, ...others}: any) {
 
 export const SelectStyledButton = styled('button')`
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
+  font-weight: 300;
+  font-size: 1rem;
   min-height: calc(1.5em + 22px);
   max-width: 50%;
   marginLeft: 6rem;
-  background: #fff;
+  background: inherit;
   border: 1px solid rgba(10, 37, 64, 0.24);
-  color: #666666;
+  color: ${({theme})=> theme.palette.grey[200]};
   border-radius: 0.4rem;
   text-align: left;
   line-height: 1.5;
@@ -77,12 +77,11 @@ export const StyledListbox = styled(Paper)`
 
 export const StyledOption= styled(OptionUnstyled)(({ theme }: any) => ({
     listStyle: 'none',
-    padding: '1rem 1rem 1rem .5rem',
+    padding: '.7rem 1rem 1rem 1rem',
     margin: 0,
     cursor: 'pointer',
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 300,
-    maxHeight: '.9rem',
+    maxHeight: '.6rem',
+    justifyContent: 'center',
     // boxShadow: '5px 10px #888888',
 
     borderTop: `.1rem solid ${theme.palette.divider}`,

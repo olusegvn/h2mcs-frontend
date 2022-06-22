@@ -3,64 +3,74 @@ import {CenteredBox} from "../../mini-components/Box";
 import LargeButton from "../../common-components/Button";
 import {TwoThirdGridItem} from "../../mini-components/Grid";
 import {styled} from "@mui/material/styles";
-import {
-    Poppings400,
-    Poppings600, PoppingsFootnote,
-    PoppingsInputLabel,
-    PoppingsSubtitle,
-    PoppingsTitle
-} from "../../mini-components/Typography";
+import {Poppins400,Poppins600, PoppinsFootnote,} from "../../mini-components/Typography";
 import {SmallSpacedStack, SpacedStack} from "../../mini-components/Stack";
-import {Button, Stack, TextField} from "@mui/material";
+import {Button, Stack} from "@mui/material";
 import {FormTextField} from "../../common-components/Input";
 import {Select, SelectStyledButton} from "../../common-components/Select";
+import { useForm, Controller } from "react-hook-form";
+import FormHeader from "./FormHeader";
 
 const LoginForm = () => {
-    const [username, setUsername] = useState<string>()
-    const [password, setPassword] = useState<string>()
-    const [category, setcategory] = useState<string>()
+    const initialFormValues = {
+        username: "",
+        password: "",
+        category: ""
+    }
+    const [formValues, setFormValues] = useState(initialFormValues);
+    const [errorString, setErrorString] = useState();
+    const {control, handleSubmit, formState:{errors}} = useForm();
+    const handleTextChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target;
+        setFormValues({...formValues, [name]: value})
+        return value;
+    }
+    const onSubmit = () => console.log(formValues);
     return (
-        <>
-      <FormContainer>
+      <>
+      <StyledFormContainer>
         <TwoThirdGridItem>
-          <SpacedStack>
-            <Stack>
-              <PoppingsTitle>Welcome</PoppingsTitle>
-              <PoppingsSubtitle>Welcome! Please enter your details.</PoppingsSubtitle>
-            </Stack>
-            <Stack>
-              <PoppingsInputLabel>Username</PoppingsInputLabel>
-              <FormTextField placeholder="Enter your username"/>
-            </Stack>
-            <Stack>
-              <PoppingsInputLabel>Password</PoppingsInputLabel>
-              <FormTextField placeholder="password"/>
-            </Stack>
-            <Select RootButton={SelectStyledButton}
-                    items={[ 'Login As...', 'Something' , 'Something else',]}
-            />
-            <Select RootButton={SelectStyledButton}
-                    items={[ 'Category...', 'Something' , 'Something else',]}
-            />
-            <SmallSpacedStack>
-                <SignInButton><Poppings600>Sign in</Poppings600></SignInButton>
-                <SecondaryTextButton><Poppings400>Forgot password</Poppings400></SecondaryTextButton>
-            </SmallSpacedStack>
-          </SpacedStack>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <SpacedStack>
+                <FormHeader errorString={errorString} validationErrors={errors}/>
+                  <Controller control={control} name={'username'} rules={{required: 'Fill in field'}} render={({field}) => (
+                    <FormTextField
+                        {...field} required={errors.username}
+                        errorString={errorString} label={'Username'}
+                        handleTextChanged={handleTextChanged}
+                        placeholder={'Enter your username'}
+                    />)}
+                    />
+                  <Controller control={control} name={'password'} rules={{required: 'Fill in field'}} render={({field}) => (
+                    <FormTextField
+                        {...field} required={errors.password}
+                        errorString={errorString} label={'Password'}
+                        handleTextChanged={handleTextChanged}
+                        placeholder={'password'}
+                    />)}
+                  />
+                <Select RootButton={SelectStyledButton} items={[ 'Index As...', 'Something' , 'Something else',]}/>
+                <Select RootButton={SelectStyledButton} items={[ 'Category...', 'Something' , 'Something else',]}/>
+                <SmallSpacedStack>
+                    <StyledSignInButton type={'submit'}><Poppins600>Sign in</Poppins600></StyledSignInButton>
+                    <StyledSecondaryTextButton><Poppins400>Forgot password</Poppins400></StyledSecondaryTextButton>
+                </SmallSpacedStack>
+            </SpacedStack>
+          </form>
         </TwoThirdGridItem>
-      </FormContainer>
-      <PoppingsFootnote>Powered by nHub Nigeria</PoppingsFootnote>
+      </StyledFormContainer>
+      <PoppinsFootnote>Powered by nHub Nigeria</PoppinsFootnote>
       </>
     );
 };
 
 export default LoginForm;
 
-const SignInButton = styled((props: any) => <LargeButton {...props}/>
+const StyledSignInButton = styled((props: any) => <LargeButton {...props}/>
 )(({theme}) => ({backgroundColor: theme.palette.info.main}));
 
-const SecondaryTextButton = styled((props: any) => <Button {...props}/>
+const StyledSecondaryTextButton = styled((props: any) => <Button {...props}/>
 )(({theme}) => ({color: theme.palette.secondary.main}));
 
-const FormContainer = styled((props: any) => <CenteredBox
+const StyledFormContainer = styled((props: any) => <CenteredBox
     style={{paddingRight: '15%', paddingLeft: '7%'}} {...props}/>)();

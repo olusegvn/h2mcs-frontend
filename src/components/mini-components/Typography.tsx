@@ -29,20 +29,29 @@ export const PoppingsTitle = (props: any) => <CenteredPoppings
         lineHeight: '2.5rem'
     }} {...props}/>;
 
-export const PoppingsInputLabel = (props: any) => <Poppings
+export const PoppinsInputLabel = (props: any) => <Poppings
     sx={{
+        paddingLeft: '.4rem',
         fontSize: '.8rem',
         fontWeight: 500,
         color: '#404040',
         // lineHeight: '2.5rem'
     }} {...props}/>;
 
-export const PoppingsSubtitle = (props: any) => <CenteredPoppings
+export const PoppinsErrorInputLabel = (props: any) => <PoppinsInputLabel
+    sx={{color: theme.palette.error.main,}} {...props}/>;
+
+export const PoppinsSubtitle = (props: any) => <CenteredPoppings
     sx={{color: '#636364'}}
     fw={400}
     {...props}/>;
 
-export const PoppingsFootnote = (props: any) => <Poppings
+export const PoppinsErrorSubtitle = (props: any) => <CenteredPoppings
+    sx={{color: theme.palette.error.main}}
+    fw={400}
+    {...props}/>;
+
+export const PoppinsFootnote = (props: any) => <Poppings
     sx={{
         fontSize: '.8rem',
         fontWeight: 400,
@@ -50,15 +59,15 @@ export const PoppingsFootnote = (props: any) => <Poppings
         textAlign: 'center',
     }} {...props}/>;
 
-export const Poppings600 = (props: any) => <Poppings fw={600} {...props}/>;
-export const Poppings400 = (props: any) => <Poppings fw={400} {...props}/>;
+export const Poppins600 = (props: any) => <Poppings fw={600} {...props}/>;
+export const Poppins400 = (props: any) => <Poppings fw={400} {...props}/>;
 
 
 export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>
 (
     <Typography
         sx={{
-            fontFamily: "'Poppins', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontSize: s,
             textTransform: 'none',
             fontWeight: fw,
@@ -67,4 +76,4 @@ export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>
     />
 ))();
 
-export const Monserrat300 = (props: any) => <Poppings fw={300} s='.8rem' {...props}/>;
+export const Monserrat300 = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;

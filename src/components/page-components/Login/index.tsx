@@ -6,15 +6,15 @@ import loginBackground from '../../../assets/login-backgrond.png'
 
 const Login = (): JSX.Element => {
     return (
-        <MainContainer>
-            <FormContainer><LoginForm/></FormContainer>
-        </MainContainer>
+        <StyledMainContainer>
+            <StyledFormContainer><LoginForm/></StyledFormContainer>
+        </StyledMainContainer>
     );
 }
 
 export default Login
 
-const MainContainer = styled((props: any) => <Grid container {...props} />)
+const StyledMainContainer = styled((props: any) => <Grid container {...props} />)
 (({theme}) => ({
     height: '100vh',
     backgroundImage: `linear-gradient(90deg, #FDFDFD 50%, 
@@ -26,6 +26,6 @@ const MainContainer = styled((props: any) => <Grid container {...props} />)
     backgroundSize: 'cover',
 }));
 
-const FormContainer = styled((props: any) => <HalfGridItem
+const StyledFormContainer = styled((props: any) => <HalfGridItem
     style={{backgroundColor: '#fff'}} {...props}/>)();
 
