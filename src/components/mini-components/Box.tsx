@@ -1,10 +1,11 @@
 import React from 'react';
 import {Box} from "@mui/material";
 
+export const FlexGrowBox = (props: any): JSX.Element => <Box  {...props} style={{ flexGrow: 1, display: 'flex' }}/>
+
 export const CenteredBox = (props: any) => {
-    return (<Box style={{ flexGrow: 1 }}
+    return (<FlexGrowBox
                  height={'96vh'}
-                 display={'flex'}
                  alignItems="center"
                  justifyContent="center"
                  {...props}

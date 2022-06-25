@@ -2,7 +2,7 @@ import LoginForm from "./LoginForm";
 import {Grid} from "@mui/material";
 import {HalfGridItem} from "../../mini-components/Grid";
 import {styled} from "@mui/material/styles";
-import loginBackground from '../../../assets/login-backgrond.png'
+import loginBackground from '../../../assets/images/login-backgrond.png'
 
 const Login = (): JSX.Element => {
     return (
@@ -16,7 +16,6 @@ export default Login
 
 const StyledMainContainer = styled((props: any) => <Grid container {...props} />)
 (({theme}) => ({
-    height: '100vh',
     backgroundImage: `linear-gradient(90deg, #FDFDFD 50%, 
         rgba(238, 238, 238, 0.62) 59.47%, 
         rgba(235, 235, 235, 0.533788) 70.08%, 

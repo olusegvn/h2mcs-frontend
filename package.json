@@ -50,6 +50,8 @@
   "devDependencies": {
     "@iconify/icons-emojione": "^1.2.2",
     "@iconify/icons-emojione-v1": "^1.2.2",
-    "@iconify/react": "^3.2.2"
+    "@iconify/react": "^3.2.2",
+    "@mui/icons-material": "^5.8.4",
+    "reactjs-popup": "^2.0.5"
   }
 }

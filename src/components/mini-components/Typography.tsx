@@ -35,11 +35,18 @@ export const PoppinsInputLabel = (props: any) => <Poppings
         fontSize: '.8rem',
         fontWeight: 500,
         color: '#404040',
-        // lineHeight: '2.5rem'
     }} {...props}/>;
 
 export const PoppinsErrorInputLabel = (props: any) => <PoppinsInputLabel
     sx={{color: theme.palette.error.main,}} {...props}/>;
+
+export const PoppinsPageTitle = (props: any) => <Poppings
+    color='text.primary'
+    sx={{
+        paddingLeft: '.8rem',
+        fontSize: '1.6rem',
+        fontWeight: 500,
+    }} {...props}/>;
 
 export const PoppinsSubtitle = (props: any) => <CenteredPoppings
     sx={{color: '#636364'}}
@@ -60,6 +67,13 @@ export const PoppinsFootnote = (props: any) => <Poppings
     }} {...props}/>;
 
 export const Poppins600 = (props: any) => <Poppings fw={600} {...props}/>;
+
+export const PoppinsNavLink = ({active, ...others}: any) => (
+    <Poppins600 color={active? 'primary': 'text.primary'} {...others} />
+);
+
+
+
 export const Poppins400 = (props: any) => <Poppings fw={400} {...props}/>;
 
 
@@ -77,3 +91,5 @@ export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>
 ))();
 
 export const Monserrat300 = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;
+
+export const MonserratListOption = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;

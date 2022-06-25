@@ -6,6 +6,7 @@ import {Stack} from "@mui/material";
 import theme from "../../Theme";
 import warningIcon from "@iconify/icons-emojione-v1/warning";
 import {Icon} from "@iconify/react";
+import {SmallSpacedStack} from "../mini-components/Stack";
 
 interface FormTextFieldProps {
   name: string;
@@ -29,7 +30,7 @@ export const FormTextField = ({name, errorString,
   return (
       <Stack>
         <LabelComponent>{label}</LabelComponent>
-        <Stack direction={'row'} spacing={2} alignItems={'center'}>
+        <SmallSpacedStack direction={'row'} alignItems={'center'}>
           <StyledFormTextField
               name={name}
               value={value}
@@ -39,13 +40,14 @@ export const FormTextField = ({name, errorString,
               {...others}
           />
           {required && <Icon icon={warningIcon} height={25}/>}
-        </Stack>
+        </SmallSpacedStack>
       </Stack>
   );
 
 }
 
 const StyledFormTextField = styled(InputBase)(({ theme }) => ({
+    width: '90%',
   '& .MuiInputBase-input': {
     boxShadow: `0px 4px 10px rgba(0, 0, 0, 0.07)`,
     minHeight: '2rem',

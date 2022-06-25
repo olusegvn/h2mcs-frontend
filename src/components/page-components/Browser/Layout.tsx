@@ -1,11 +1,12 @@
+import BrowserAppBar from "./AppBar";
 
 const Layout = ({children}: {children: JSX.Element}): JSX.Element => {
     return (
         <>
-            Layout
+            <BrowserAppBar/>
             {children}
         </>
     );
 }
 
-export default Layout
+export default Layout;

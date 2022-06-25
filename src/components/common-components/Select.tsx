@@ -16,10 +16,10 @@ function CustomSelect({ RootButton, ...others}: any) {
   return <SelectUnstyled {...others} components={components} />;
 }
 
-export function Select({items, ...others}: any) {
-  const [currentItem, setCurrentItem] = useState(items[0]);
+export function Select({items, placeholder, ...others}: any) {
+  const [currentItem, setCurrentItem] = useState<string>(items[0]);
   return (
-      <CustomSelect  value={currentItem} onChange={setCurrentItem} {...others}>
+      <CustomSelect value={currentItem} onChange={setCurrentItem} {...others}>
         {items.map((item: string) => (
             <Monserrat300>
               <StyledOption key={item} value={item}>
@@ -31,8 +31,6 @@ export function Select({items, ...others}: any) {
 
   );
 }
-
-
 
 
 export const SelectStyledButton = styled('button')`
@@ -116,11 +114,3 @@ export const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
   width: 12.5%;
 `;
-
-export const SelectShopFormContainer = styled(Box)(() => ({
-    margin: '30% 7% ',
-}));
-
-export const SelectShopContainer = styled(Box)(() => ({
-    marginTop: '5%',
-}));
