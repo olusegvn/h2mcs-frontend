@@ -17,7 +17,6 @@ interface FormTextFieldProps {
   label?: string;
   required?: boolean;
   onChange: any;
-  // setMissingField: (e: any) => boolean;
 }
 
 export const FormTextField = ({name, errorString,
@@ -26,7 +25,6 @@ export const FormTextField = ({name, errorString,
                                 ...others}: FormTextFieldProps) => {
   const LabelComponent = required || errorString ? PoppinsErrorInputLabel: PoppinsInputLabel;
   const border = `1px solid ${required || errorString? theme.palette.error.light : theme.palette.grey[700]}`
-
   return (
       <Stack>
         <LabelComponent>{label}</LabelComponent>

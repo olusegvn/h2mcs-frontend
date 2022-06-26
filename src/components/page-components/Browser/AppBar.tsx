@@ -14,7 +14,7 @@ import avatar from '../../../assets/images/avatar.png'
 import {Avatar} from "../../mini-components/Avatar";
 import Popup from "reactjs-popup";
 import {PopupActions} from "reactjs-popup/dist/types";
-import {OptionList} from "../../common-components/OptionList";
+import {OptionList, StyledOptionButton} from "../../common-components/OptionList";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const profileOptions = [
@@ -33,7 +33,7 @@ const BrowserAppBar = () => {
     const ref = useRef<PopupActions>(null);
     return (
         <StyledAppBar elevation={0}>
-            <StyledToolbar>
+            <Toolbar>
                 <img src={logo} height={40}/>
                 <PoppinsPageTitle>H2MCS</PoppinsPageTitle>
                 <StyledSearchContainer>
@@ -42,15 +42,12 @@ const BrowserAppBar = () => {
                 <Popup
                     ref={ref}
                     trigger={<StyledIconButton>
-                                <Badge components={{Badge: ()=>
-                                    <BadgeCircle
-                                        color={theme.palette.error.main}/>}}
-                                        badgeContent>
-                                    <StyledNotificationsNoneIcon/>
-                                </Badge>
-                            </StyledIconButton>}
+                        <Badge components={{Badge: ()=><BadgeCircle color={theme.palette.error.main}/>}}>
+                            <StyledNotificationsNoneIcon/>
+                        </Badge>
+                    </StyledIconButton>}
                 >
-                    <OptionList items={notificationItems}/>
+                    <OptionList OptionButton={StyledOptionButton} items={notificationItems}/>
                 </Popup>
                 <Avatar src={avatar}/>
                 <Popup
@@ -60,9 +57,9 @@ const BrowserAppBar = () => {
                                 <KeyboardArrowDownIcon/>
                              </Button>}
                 >
-                    <OptionList items={profileOptions}/>
+                    <OptionList OptionButton={StyledOptionButton} items={profileOptions}/>
                 </Popup>
-            </StyledToolbar>
+            </Toolbar>
         </StyledAppBar>
     );
 };
@@ -71,7 +68,7 @@ const StyledAppBar = styled(AppBar)(({theme}) => ({
     backgroundColor: 'white',
     borderBottom: '3px solid',
     borderColor: '#E9EAED',
-    position: 'static'
+    position: 'static',
 }));
 
 const StyledNotificationsNoneIcon = styled(NotificationsNoneIcon)(({theme}) => ({
@@ -87,8 +84,5 @@ const StyledIconButton = styled(IconButton)(({theme}) => ({
     marginRight: '2%'
 }));
 
-const StyledToolbar = styled(Toolbar)(({theme}) => ({
-    marginRight: '1.5%'
-}));
 
 export default BrowserAppBar;

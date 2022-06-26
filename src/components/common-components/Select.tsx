@@ -1,116 +1,105 @@
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import {selectUnstyledClasses} from "@mui/base/SelectUnstyled";
-import OptionUnstyled, {optionUnstyledClasses} from "@mui/base/OptionUnstyled";
-import {Monserrat300, PoppinsInputLabel} from "../mini-components/Typography";
-import {useState} from "react";
+import React, {useEffect, useRef, useState} from 'react';
+import {Button, Paper, Stack} from "@mui/material";
+import Popup from "reactjs-popup";
+import {option, OptionList} from "./OptionList";
+import {Poppins} from "../mini-components/Typography";
 import {styled} from "@mui/material/styles";
-import {Paper, Box} from "@mui/material";
-import PopperUnstyled from "@mui/base/PopperUnstyled";
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import {PopupActions} from "reactjs-popup/dist/types";
+import theme from "../../Theme";
+import {Icon} from "@iconify/react";
+import warningIcon from "@iconify/icons-emojione-v1/warning";
+import {SmallSpacedStack} from "../mini-components/Stack";
 
-function CustomSelect({ RootButton, ...others}: any) {
-  const components = {
-    Root: RootButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-  };
-  return <SelectUnstyled {...others} components={components} />;
+interface selectProps {
+    items: option[],
+    onSelect: (e: React.ChangeEvent<HTMLInputElement>)=> string,
+    value: string,
+    name: string,
+    placeholder?: string,
+    required?: object| string| boolean,
+    errorString?: string
 }
 
-export function Select({items, placeholder, ...others}: any) {
-  const [currentItem, setCurrentItem] = useState<string>(items[0]);
-  return (
-      <CustomSelect value={currentItem} onChange={setCurrentItem} {...others}>
-        {items.map((item: string) => (
-            <Monserrat300>
-              <StyledOption key={item} value={item}>
-                  {item}
-              </StyledOption>
-            </Monserrat300>
-        ))}
-      </CustomSelect>
+export const Select = ({errorString, items, required, placeholder, value, onSelect, name, ...others}: selectProps) => {
+    const selectPopupRef = useRef<PopupActions>(null);
+    const selectButtonRef = useRef<HTMLButtonElement>(null);
+    const border = `1px solid ${required || errorString? theme.palette.error.light : theme.palette.grey[700]}`
 
-  );
-}
-
-
-export const SelectStyledButton = styled('button')`
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  min-height: calc(1.5em + 22px);
-  max-width: 50%;
-  marginLeft: 6rem;
-  background: inherit;
-  border: 1px solid rgba(10, 37, 64, 0.24);
-  color: ${({theme})=> theme.palette.grey[200]};
-  border-radius: 0.4rem;
-  text-align: left;
-  line-height: 1.5;
-  cursor: pointer;
-  padding: 1rem;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
-
-
-  &.${selectUnstyledClasses.expanded} {
-    border-radius: 0.75em 0.75em 0 0;
-    &::after {
-      font-family: 'Material Icons';
-      content: '\\e316';     
+    const onOptionSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        selectPopupRef?.current?.close();
+        onSelect(e);
     }
-  }
-  &::after {
-    font-family: 'Material Icons';
-    content: "\\e313";
-    float: right;
-  }
-`;
+    return (
+        <SmallSpacedStack direction={'row'} alignItems={'center'}>
+        <Popup
+            ref={selectPopupRef}
+            trigger={
+            <StyledTriggerContainer>
+                <StyledSelectButton ref={selectButtonRef} sx={{border: border,}}>
+                <Poppins >{ value ||placeholder}</Poppins>
+                <KeyboardDoubleArrowDownIcon/>
+                </StyledSelectButton>
+            </StyledTriggerContainer>}
+        >
+            <OptionList
+                OptionButton={StyledSelectOptionButton}
+                selectAction={onOptionSelect}
+                OptionsContainer={StyledSelectOptionsContainer}
+                items={items}
+                parentName={name}
+                parentButtonRef={selectButtonRef}
+                {...others}/>
+        </Popup>
+        {required && <Icon icon={warningIcon} height={25}/>}
+       </SmallSpacedStack>
 
-export const StyledListbox = styled(Paper)`
-  margin-top: .3rem;
-  font-size: 1rem;
-  box-sizing: border-box;
-  border-radius: .7rem;
-  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.1);
-  `;
+    );
+};
 
-export const StyledOption= styled(OptionUnstyled)(({ theme }: any) => ({
-    listStyle: 'none',
-    padding: '.7rem 1rem 1rem 1rem',
-    margin: 0,
-    cursor: 'pointer',
-    maxHeight: '.6rem',
-    justifyContent: 'center',
-    // boxShadow: '5px 10px #888888',
+const StyledTriggerContainer = styled('div')(()=> ({
+    width: '50%',
+}));
 
-    borderTop: `.1rem solid ${theme.palette.divider}`,
+const StyledSelectButton = styled(Button)(({theme}) => ({
+    justifyContent: 'space-between',
+    height: '3.5rem',
+    color: theme.palette.grey[200],
+    width: '100%',
+    filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25))',
+    border: '1px solid rgba(0, 0, 0, 0.25)',
+    borderRadius: '.5rem',
+    "&:hover": {
+        backgroundColor: theme.palette.common.white,
+        boxShadow: 'none',
+        filter: 'none',
+        border: 'none'
+    }
+}));
+
+
+export const StyledSelectOptionsContainer = styled(Stack)(({theme, }) => ({
+    padding: '.4rem 0px',
+    backgroundColor: '#FDFCFC',
+    borderRadius: '1rem',
+    filter: 'drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.1))',
+    width: '16.5vw'
+}));
+
+export const StyledSelectOptionButton = styled(Button)(({theme,}) => ({
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundColor: '#FDFCFC',
+    color: theme.palette.grey[300],
+    justifyContent: 'space-between',
+    borderRadius: '0px',
+    padding: '.5rem 1rem .5rem .7rem',
+    height: '2.5rem',
+    width: '100%',
+    "&:hover": {
+        backgroundColor: theme.palette.common.white,
+        alignItems: 'center',
+    },
     '&:last-of-type': {
         borderBottom: 'none',
     },
-
-    '&.${optionUnstyledClasses.disabled}': {
-        color: theme.palette.action.disabled,
-    },
-
-    '&.${optionUnstyledClasses.selected}': {
-        backgroundColor: '#F33451',
-    },
-
-    '&.${optionUnstyledClasses.highlighted}': {
-        backgroundColor: '#F33451',
-        color: '#F33451',
-    },
-
-    '&.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected}': {
-        backgroundColor: '#F33451',
-        color: '#F33451',
-    },
-
-    '&:hover:not(.${optionUnstyledClasses.disabled})': {
-        backgroundColor: '#F33451',
-    },
 }));
-
-export const StyledPopper = styled(PopperUnstyled)`
-  z-index: 1;
-  width: 12.5%;
-`;

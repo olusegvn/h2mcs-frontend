@@ -2,30 +2,46 @@ import React from 'react';
 import {styled} from "@mui/material/styles";
 import {Button, Stack} from "@mui/material";
 import {MonserratListOption} from "../mini-components/Typography";
-import {RowStack} from "../mini-components/Stack";
 import {severityObject} from "../../assets/Severity";
 import {Circle} from "./Circle";
 
-interface option {
+export interface option {
     name: string,
     action?: (props: any) => any;
     severity?: number
+    value?: string,
 }
-interface optionListProps {
-    items: option[]
+export interface optionListProps {
+    items: option[],
+    OptionButton: any,
+    OptionsContainer?: any,
+    selectAction?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    parentButtonRef?: React.RefObject<HTMLButtonElement>,
+    parentName?: string,
+    onChange?: any,
 }
 
-export const OptionList = ({items}: optionListProps) => {
+export const OptionList = ({onChange, parentButtonRef, parentName, items, selectAction, OptionButton=StyledOptionButton, OptionsContainer=StyledOptionsContainer}: optionListProps) => {
     return (
-        <StyledOptionsContainer>
-            {items.map(({name, action, severity}: option) => (
-                <StyledOptionButton onClick={action}>
-                    <MonserratListOption>{name}</MonserratListOption>
-                    {severity && <Circle color={severityObject[severity]}/>}
-                </StyledOptionButton>
-            ))}
+        <OptionsContainer sx={{width: parentButtonRef?.current?.clientWidth}} >
+            {items.map(({name, value, action, severity}: option, index) => {
+                action = action || selectAction
 
-        </StyledOptionsContainer>
+                // manually creating event because default one is unreliable
+                const event = {target: {name: parentName, value}};
+                return (
+                    <OptionButton
+                        name={parentName}
+                        value={value}
+                        key={index}
+                        onClick={() => {onChange(event);return action? action(event):null}}>
+                        <MonserratListOption>{name}</MonserratListOption>
+                        {severity && <Circle color={severityObject[severity]}/>}
+                    </OptionButton>
+                );
+            })}
+
+        </OptionsContainer>
     );
 };
 
@@ -33,6 +49,7 @@ export const OptionList = ({items}: optionListProps) => {
 export const StyledOptionsContainer = styled(Stack)(({theme, }) => ({
     filter:'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
 }));
+
 
 export const StyledOptionButton = styled(Button)(({theme, }) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -47,4 +64,5 @@ export const StyledOptionButton = styled(Button)(({theme, }) => ({
         alignItems: 'center',
       },
 }));
+
 

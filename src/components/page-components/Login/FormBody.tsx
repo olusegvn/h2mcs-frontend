@@ -1,14 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Controller} from "react-hook-form";
 import {FormTextField} from "../../common-components/Input";
-import {Select, SelectStyledButton} from "../../common-components/Select";
+import {Select, StyledSelectOptionButton} from "../../common-components/Select";
 import {SmallSpacedStack} from "../../mini-components/Stack";
 import {Poppins400, Poppins600} from "../../mini-components/Typography";
 import {styled} from "@mui/material/styles";
 import {LargeButton} from "../../common-components/Button";
 import {Button} from "@mui/material";
 
-const FormBody = ({control, errorString, errors, handleTextChanged}: any) => {
+const categoryOptions = [
+    {name: 'Something', value: 'Something'},
+    {name: 'Something else', value: 'Something else'}
+]
+const loginOptions = [
+    {name: 'Something', value: 'Something'},
+    {name: 'Something else', value: 'Something else'}
+]
+
+const FormBody = ({control, errorString, errors}: any) => {
+    const initialFormValues = {
+        username: "",
+        password: "",
+        category: "",
+        loginAs: ""
+    }
+    const [formValues, setFormValues] = useState(initialFormValues);
+    const handleTextChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target;
+        setFormValues({...formValues, [name]: value})
+        return value;
+    }
     return (
         <>
         <Controller control={control} name={'username'} rules={{required: 'Fill in field'}} render={({field}) => (
@@ -27,11 +48,32 @@ const FormBody = ({control, errorString, errors, handleTextChanged}: any) => {
                 placeholder={'password'}
             />)}
           />
-        <Select RootButton={SelectStyledButton} items={[ 'Index As...', 'Something' , 'Something else',]}/>
-        <Select RootButton={SelectStyledButton} items={[ 'Category...', 'Something' , 'Something else',]}/>
+        <Controller control={control} name={'loginAs'} rules={{required: 'Select a category'}} render={({field}) => (
+            <Select
+                {...field}
+                errorString={errorString}
+                required={errors.loginAs}
+                name={'loginAs'}
+                placeholder={'Login As...'}
+                value={formValues.loginAs}
+                onSelect={handleTextChanged}
+                items={categoryOptions}/>
+        )}/>
+        <Controller control={control} name={'category'} rules={{required: 'Select a category'}} render={({field}) => (
+            <Select
+                {...field}
+                errorString={errorString}
+                required={errors.category}
+                name={'category'}
+                placeholder={'Category...'}
+                value={formValues.category}
+                onSelect={handleTextChanged}
+                items={loginOptions}/>
+        )}/>
+
         <SmallSpacedStack>
             <StyledSignInButton type={'submit'}><Poppins600>Sign in</Poppins600></StyledSignInButton>
-            <StyledSecondaryTextButton><Poppins400>Forgot password</Poppins400></StyledSecondaryTextButton>
+            <StyledTextButton><StyledPoppins400>Forgot password</StyledPoppins400></StyledTextButton>
         </SmallSpacedStack>
         </>
     );
@@ -42,4 +84,11 @@ export default FormBody;
 const StyledSignInButton = styled((props: any) => <LargeButton {...props}/>
 )(({theme}) => ({backgroundColor: theme.palette.info.main}));
 
-const StyledSecondaryTextButton = (props: any) => <Button color={'secondary'} {...props}/>
+const StyledTextButton = styled(Button)(({theme})=> ({
+    width: '90%'
+}));
+
+const StyledPoppins400 = styled((props: any) => <Poppins400
+    sx={{color: '#48AAF1'}}
+    {...props}/>)
+();

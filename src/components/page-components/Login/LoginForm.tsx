@@ -9,20 +9,11 @@ import FormHeader from "./FormHeader";
 import FormBody from "./FormBody";
 
 const LoginForm = () => {
-    const initialFormValues = {
-        username: "",
-        password: "",
-        category: ""
-    }
-    const [formValues, setFormValues] = useState(initialFormValues);
+
     const [errorString, setErrorString] = useState();
     const {control, handleSubmit, formState:{errors}} = useForm();
-    const handleTextChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
-        setFormValues({...formValues, [name]: value})
-        return value;
-    }
-    const onSubmit = () => console.log(formValues);
+
+    const onSubmit = () => {};
     return (
       <>
       <StyledFormContainer>
@@ -34,7 +25,6 @@ const LoginForm = () => {
                     control={control}
                     errorString={errorString}
                     errors={errors}
-                    handleTextChanged={handleTextChanged}
                 />
             </SpacedStack>
           </form>

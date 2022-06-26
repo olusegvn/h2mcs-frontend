@@ -3,7 +3,7 @@ import {styled} from "@mui/material/styles";
 import {Typography} from "@mui/material";
 import theme from "../../Theme";
 
-export const Poppings = styled(({fw, s='1rem', ...props}: any) =>
+export const Poppins = styled(({fw=300, s='1rem', ...props}: any) =>
 (
     <Typography
         sx={{
@@ -11,12 +11,13 @@ export const Poppings = styled(({fw, s='1rem', ...props}: any) =>
             fontSize: s,
             textTransform: 'none',
             fontWeight: fw,
+            color: theme.palette.grey[200],
         }}
         {...props}
     />
 ))();
 
-export const CenteredPoppings = (props: any) => <Poppings
+export const CenteredPoppings = (props: any) => <Poppins
     style={{textAlign: 'center'}}
     {...props}/>;
 
@@ -29,7 +30,7 @@ export const PoppingsTitle = (props: any) => <CenteredPoppings
         lineHeight: '2.5rem'
     }} {...props}/>;
 
-export const PoppinsInputLabel = (props: any) => <Poppings
+export const PoppinsInputLabel = (props: any) => <Poppins
     sx={{
         paddingLeft: '.4rem',
         fontSize: '.8rem',
@@ -40,7 +41,7 @@ export const PoppinsInputLabel = (props: any) => <Poppings
 export const PoppinsErrorInputLabel = (props: any) => <PoppinsInputLabel
     sx={{color: theme.palette.error.main,}} {...props}/>;
 
-export const PoppinsPageTitle = (props: any) => <Poppings
+export const PoppinsPageTitle = (props: any) => <Poppins
     color='text.primary'
     sx={{
         paddingLeft: '.8rem',
@@ -58,7 +59,7 @@ export const PoppinsErrorSubtitle = (props: any) => <CenteredPoppings
     fw={400}
     {...props}/>;
 
-export const PoppinsFootnote = (props: any) => <Poppings
+export const PoppinsFootnote = (props: any) => <Poppins
     sx={{
         fontSize: '.8rem',
         fontWeight: 400,
@@ -66,15 +67,18 @@ export const PoppinsFootnote = (props: any) => <Poppings
         textAlign: 'center',
     }} {...props}/>;
 
-export const Poppins600 = (props: any) => <Poppings fw={600} {...props}/>;
+export const Poppins600 = (props: any) => <Poppins
+    sx={{color: '#fff'}}
+    fw={600}
+    {...props}/>;
 
 export const PoppinsNavLink = ({active, ...others}: any) => (
-    <Poppins600 color={active? 'primary': 'text.primary'} {...others} />
+    <Poppins600 sx={{color:active? theme.palette.primary.main: theme.palette.text.primary}} {...others} />
 );
 
 
 
-export const Poppins400 = (props: any) => <Poppings fw={400} {...props}/>;
+export const Poppins400 = (props: any) => <Poppins fw={400} {...props}/>;
 
 
 export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>
