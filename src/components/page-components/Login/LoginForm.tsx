@@ -9,10 +9,8 @@ import FormHeader from "./FormHeader";
 import FormBody from "./FormBody";
 
 const LoginForm = () => {
-
     const [errorString, setErrorString] = useState();
     const {control, handleSubmit, formState:{errors}} = useForm();
-
     const onSubmit = () => {};
     return (
       <>

@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import logo from '../../../assets/images/H2MCS-logo.png'
 import {Badge, Button, Toolbar} from "@mui/material";
 import {styled} from "@mui/material/styles";
-import {PoppinsNavLink, PoppinsPageTitle} from "../../mini-components/Typography";
+import {PoppinsNavLink, PoppinsTitle} from "../../mini-components/Typography";
 import {FlexGrowBox} from "../../mini-components/Box";
 import Search from "../../common-components/Search";
 import IconButton from '@mui/material/IconButton';
@@ -35,7 +35,7 @@ const BrowserAppBar = () => {
         <StyledAppBar elevation={0}>
             <Toolbar>
                 <img src={logo} height={40}/>
-                <PoppinsPageTitle>H2MCS</PoppinsPageTitle>
+                <PoppinsTitle>H2MCS</PoppinsTitle>
                 <StyledSearchContainer>
                     <Search/>
                 </StyledSearchContainer>
@@ -69,6 +69,7 @@ const StyledAppBar = styled(AppBar)(({theme}) => ({
     borderBottom: '3px solid',
     borderColor: '#E9EAED',
     position: 'static',
+    paddingRight: '2%',
 }));
 
 const StyledNotificationsNoneIcon = styled(NotificationsNoneIcon)(({theme}) => ({

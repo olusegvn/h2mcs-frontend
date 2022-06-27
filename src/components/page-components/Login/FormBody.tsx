@@ -81,14 +81,12 @@ const FormBody = ({control, errorString, errors}: any) => {
 
 export default FormBody;
 
-const StyledSignInButton = styled((props: any) => <LargeButton {...props}/>
-)(({theme}) => ({backgroundColor: theme.palette.info.main}));
+const StyledTextButton = styled(Button)(({theme})=> ({width: '90%'}));
 
-const StyledTextButton = styled(Button)(({theme})=> ({
-    width: '90%'
+const StyledSignInButton = styled(LargeButton)(({theme}) => ({
+    backgroundColor: theme.palette.info.main
 }));
 
-const StyledPoppins400 = styled((props: any) => <Poppins400
-    sx={{color: '#48AAF1'}}
-    {...props}/>)
-();
+const StyledPoppins400 = styled(Poppins400)(({theme})=> ({
+    color: theme.palette.secondary.light
+}))

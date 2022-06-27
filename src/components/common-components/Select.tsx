@@ -25,7 +25,6 @@ export const Select = ({errorString, items, required, placeholder, value, onSele
     const selectPopupRef = useRef<PopupActions>(null);
     const selectButtonRef = useRef<HTMLButtonElement>(null);
     const border = `1px solid ${required || errorString? theme.palette.error.light : theme.palette.grey[700]}`
-
     const onOptionSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         selectPopupRef?.current?.close();
         onSelect(e);
