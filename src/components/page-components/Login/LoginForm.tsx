@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {CenteredBox} from "../../mini-components/Box";
+import {CenteredFlexGrowBox} from "../../mini-components/Box";
 import {TwoThirdGridItem} from "../../mini-components/Grid";
 import {styled} from "@mui/material/styles";
 import {PoppinsFootnote,} from "../../mini-components/Typography";
@@ -35,7 +35,7 @@ const LoginForm = () => {
 
 export default LoginForm;
 
-const StyledFormContainer = styled((props: any) => <CenteredBox
-    sx={{paddingRight: '9%', paddingLeft: '7%'}}
+const StyledFormContainer = styled((props: any) => <CenteredFlexGrowBox
+    sx={{paddingRight: '9%', paddingLeft: '7%', height:'96vh'}}
     {...props}
 />)();

@@ -63,6 +63,7 @@ export const StyledOptionButton = styled(Button)(({theme, }) => ({
         backgroundColor: theme.palette.common.white,
         alignItems: 'center',
       },
+    zIndex: '1000',
 }));
 
 

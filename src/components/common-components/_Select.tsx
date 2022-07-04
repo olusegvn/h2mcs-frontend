@@ -1,7 +1,7 @@
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import {selectUnstyledClasses} from "@mui/base/SelectUnstyled";
 import OptionUnstyled, {optionUnstyledClasses} from "@mui/base/OptionUnstyled";
-import {Monserrat300, PoppinsInputLabel} from "../mini-components/Typography";
+import {Monserrat400, PoppinsInputLabel} from "../mini-components/Typography";
 import {useState} from "react";
 import {styled} from "@mui/material/styles";
 import {Paper, Box} from "@mui/material";
@@ -21,11 +21,11 @@ export function Select({items, placeholder, ...others}: any) {
   return (
       <CustomSelect value={currentItem} onChange={setCurrentItem} {...others}>
         {items.map((item: string) => (
-            <Monserrat300>
+            <Monserrat400>
               <StyledOption key={item} value={item}>
                   {item}
               </StyledOption>
-            </Monserrat300>
+            </Monserrat400>
         ))}
       </CustomSelect>
 

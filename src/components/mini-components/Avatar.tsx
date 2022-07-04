@@ -4,7 +4,8 @@ import React from "react";
 
 export const Avatar = styled((props: any) => (
     <img alt={'avatar'} {...props} />
-))(({ theme }) => ({
-    width: '3rem',
+))(({ theme, small }) => ({
+    width: small? '2rem': '3rem',
+
 
 }));

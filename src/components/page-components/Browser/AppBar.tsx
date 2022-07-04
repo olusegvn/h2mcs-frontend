@@ -70,6 +70,7 @@ const StyledAppBar = styled(AppBar)(({theme}) => ({
     borderColor: '#E9EAED',
     position: 'static',
     paddingRight: '2%',
+    zIndex: '0',
 }));
 
 const StyledNotificationsNoneIcon = styled(NotificationsNoneIcon)(({theme}) => ({

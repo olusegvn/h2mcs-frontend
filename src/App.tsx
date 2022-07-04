@@ -4,7 +4,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Register from "./components/page-components/Register";
 import {ThemeProvider} from "@mui/material";
 import Theme from "./Theme";
-import Browser from "./components/page-components/Browser";
+import Layout from "./components/page-components/Browser/Layout";
+import {NavigationList, NavigationListItem} from "./assets/NaigationList";
 
 function App() {
     return (
@@ -14,7 +15,11 @@ function App() {
               <Routes>
                   <Route path={'/login'} element={<Login/>}/>
                   <Route path={'/register'} element={<Register/>}/>
-                  <Route path={'/'} element={<Browser/>}/>
+                  <Route element={<Layout/>}>
+                      {NavigationList.map(({name, Component, componentProps}: NavigationListItem) => (
+                            <Route path={name} element={<Component name={name} {...componentProps}/>} />
+                        ))}
+                  </Route>
               </Routes>
             </div>
           </ThemeProvider>

@@ -4,20 +4,29 @@ import {Stack} from "@mui/material";
 import {NavigationList, NavigationListItem} from "../../../assets/NaigationList";
 import {NavigationLinkButton} from "../../common-components/Button";
 
-const Drawer = () => {
+const Drawer = ({name}: {name: string}) => {
     return (
         <StyledDrawer>
-            {NavigationList['doctor'].map((item: NavigationListItem) => (
-                <NavigationLinkButton {...item}/>
-            ))}
+            <Stack>
+                {NavigationList.map((item: NavigationListItem) => (
+                    <NavigationLinkButton active={name===item.name} {...item}/>
+                ))}
+            </Stack>
+            <Stack>
+                <StyledNavigationLinkButton name={'logout'} icon={"ri:logout-circle-line"}/>
+            </Stack>
         </StyledDrawer>
     );
 };
 
 export default Drawer;
 
-const StyledDrawer = styled((props: any) => <Stack direction={'column'} {...props} />)(({theme}) => ({
-    // float: 'left',
-    width: '18%',
+const StyledDrawer = styled(Stack)(({theme}) => ({
+    width: '16%',
     height: '95%',
+    justifyContent: 'space-between',
+}));
+
+const StyledNavigationLinkButton = styled(NavigationLinkButton)(({theme}) => ({
+    minWeight: '5rem',
 }));

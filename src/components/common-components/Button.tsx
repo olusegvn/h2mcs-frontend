@@ -23,21 +23,23 @@ export const LargeButton = styled((props: any) => {
 export const ActionButton = styled((props: any) => {
     return (
         <Button
-            variant={'outlined'}
+            variant={'contained'}
             style={{
+                boxShadow: 'none',
+                filter: 'none',
                 borderRadius: '2rem',
-                border: '.2rem solid',
                 textTransform: 'none',
                 padding: '.5rem .7rem',
-            }}
+            }}check for substring js
+
             {...props}
         />
     );
 })();
 
-export const NavigationLinkButton = ({icon, name}: {name: string, icon: string}) => {
+export const NavigationLinkButton = ({icon, name, active}: {name: string, icon: string, active?: any}) => {
     return (
-        <StyledNavigationLinkButton>
+        <StyledNavigationLinkButton active={active} href={`/${name}`}>
             <NavigationLinkIcon icon={icon}/>
             <PoppinsNavLink>{name}</PoppinsNavLink>
         </StyledNavigationLinkButton>

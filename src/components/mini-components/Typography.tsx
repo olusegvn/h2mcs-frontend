@@ -80,7 +80,7 @@ export const Poppins600 = (props: any) => <Poppins
     {...props}/>;
 
 export const PoppinsNavLink = ({...others}: any) => (
-    <Poppins600 sx={{color: 'inherit'}}  {...others} />
+    <Poppins600 sx={{color: 'inherit'}} s={'1.1vw'} {...others} />
 );
 
 
@@ -101,8 +101,16 @@ export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>
     />
 ))();
 
-export const Monserrat300 = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;
-
+export const Monserrat400 = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;
 export const MonserratListOption = (props: any) => <Monserrat fw={400} s='.8rem' {...props}/>;
-
 export const Monserrat600 = (props: any) => <Monserrat fw={600} s='.8rem' {...props}/>;
+export const Monserrat700 = (props: any) => <Monserrat fw={700} s='.8rem' {...props}/>;
+
+export const MonserratTableHeader = styled(Monserrat600)(({theme}) => ({
+    color: '#1B1E22'
+}));
+
+export const MonserratTableData = styled(Monserrat400)(({theme}) => ({
+    color: theme.palette.text.secondary,
+    paddingLeft: '7%',
+}));
