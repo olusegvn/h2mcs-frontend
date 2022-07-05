@@ -1,11 +1,16 @@
 import React from 'react';
 import {Icon} from "@iconify/react";
 
-const NavigationLinkIcon = ({icon}: { icon: string }) => (<Icon
+export const NavigationLinkIcon = ({icon}: { icon: string }) => (<Icon
     height={32}
     icon={icon}
     style={{padding: '0px 5% 0% 8%'}}
     />
 );
 
-export default NavigationLinkIcon;
+export const PlaceholderIcon = ({icon}: { icon: string }) => (<Icon
+    height={'50vh'}
+    icon={icon}
+    style={{padding: '0px 5% 0% 8%'}}
+    />
+);

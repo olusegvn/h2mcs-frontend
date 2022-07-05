@@ -11,7 +11,6 @@ export const Poppins = styled(({fw=300, s='1rem', ...props}: any) =>
             fontSize: s,
             textTransform: 'none',
             fontWeight: fw,
-            color: theme.palette.grey[200],
         }}
         {...props}
     />
@@ -86,6 +85,7 @@ export const PoppinsNavLink = ({...others}: any) => (
 
 
 export const Poppins400 = (props: any) => <Poppins fw={400} {...props}/>;
+export const Poppins700 = (props: any) => <Poppins fw={700} s={'2.5rem'} {...props}/>;
 
 
 export const Monserrat = styled(({fw, s='1rem', ...props}: any) =>

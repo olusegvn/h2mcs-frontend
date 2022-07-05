@@ -16,8 +16,8 @@ function App() {
                   <Route path={'/login'} element={<Login/>}/>
                   <Route path={'/register'} element={<Register/>}/>
                   <Route element={<Layout/>}>
-                      {NavigationList.map(({name, Component, componentProps}: NavigationListItem) => (
-                            <Route path={name} element={<Component name={name} {...componentProps}/>} />
+                      {NavigationList.map(({name, icon, Component, componentProps}: NavigationListItem) => (
+                            <Route path={name} element={<Component icon={icon} name={name} {...componentProps}/>} />
                         ))}
                   </Route>
               </Routes>

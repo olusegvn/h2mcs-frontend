@@ -1,9 +1,8 @@
 import React from 'react';
 import {styled} from "@mui/material/styles";
 import {Button} from "@mui/material";
-import { Icon } from '@iconify/react';
 import {PoppinsNavLink} from "../mini-components/Typography";
-import NavigationLinkIcon from "../mini-components/Icon";
+import {NavigationLinkIcon} from "../mini-components/Icon";
 import theme from "../../Theme";
 
 export const LargeButton = styled((props: any) => {

@@ -7,7 +7,7 @@ import {Stack} from "@mui/material";
 import {RowStack} from "../../mini-components/Stack";
 import Box from "@mui/material/Box";
 
-const BrowserBody = ({name, Component}: {name: string, Component: any}) => {
+const BrowserBody = ({name, icon, Component}: {name: string, icon: string, Component: any}) => {
     return (
         <>
         <BrowserHeader name={name}/>
@@ -15,7 +15,7 @@ const BrowserBody = ({name, Component}: {name: string, Component: any}) => {
             <Drawer name={name}/>
             <StyledChidrenContainer>
                 <StyledBrowserBodyContainer id={'scrollDiv'}>
-                    <Component  />
+                    <Component icon={icon} />
                 </StyledBrowserBodyContainer>
             </StyledChidrenContainer>
         </StyledRowStack>

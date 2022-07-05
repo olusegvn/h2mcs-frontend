@@ -19,8 +19,8 @@ export const NavigationList = [
         {
             name: 'Prescriptions',
             icon: 'uil:prescription-bottle',
-            component: Button,
-            componentProps: {children: "My button"}
+            Component: BrowserBody,
+            componentProps: {Component: CustomTabs}
         },
         {
             name: 'Patients',
