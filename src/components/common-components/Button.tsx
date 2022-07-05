@@ -29,8 +29,7 @@ export const ActionButton = styled((props: any) => {
                 borderRadius: '2rem',
                 textTransform: 'none',
                 padding: '.5rem .7rem',
-            }}check for substring js
-
+            }}
             {...props}
         />
     );

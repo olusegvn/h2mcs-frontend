@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Controller} from "react-hook-form";
 import {FormTextField} from "../../common-components/Input";
-import {Select, StyledSelectOptionButton} from "../../common-components/Select";
+import {Select} from "../../common-components/Select";
 import {SmallSpacedStack} from "../../mini-components/Stack";
 import {Poppins400, Poppins600} from "../../mini-components/Typography";
 import {styled} from "@mui/material/styles";
@@ -56,7 +56,7 @@ const FormBody = ({control, errorString, errors}: any) => {
                 name={'loginAs'}
                 placeholder={'Login As...'}
                 value={formValues.loginAs}
-                onSelect={handleTextChanged}
+                handleTextChanged={handleTextChanged}
                 items={categoryOptions}/>
         )}/>
         <Controller control={control} name={'category'} rules={{required: 'Select a category'}} render={({field}) => (
@@ -67,7 +67,7 @@ const FormBody = ({control, errorString, errors}: any) => {
                 name={'category'}
                 placeholder={'Category...'}
                 value={formValues.category}
-                onSelect={handleTextChanged}
+                handleTextChanged={handleTextChanged}
                 items={loginOptions}/>
         )}/>
 

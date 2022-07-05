@@ -8,7 +8,7 @@ import warningIcon from "@iconify/icons-emojione-v1/warning";
 import {Icon} from "@iconify/react";
 import {SmallSpacedStack} from "../mini-components/Stack";
 
-interface FormTextFieldProps {
+export interface FormTextFieldProps {
   name: string;
   value: string;
   errorString?: string;

@@ -12,7 +12,6 @@ import avatar from '../../assets/images/avatar.png';
 import {RowStack} from "../mini-components/Stack";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from "react";
-import {PlaceholderIcon} from "../mini-components/Icon";
 import Placeholder from "./PlaceHolder";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -44,22 +43,22 @@ function createData(
 }
 
 const rows: Array<object> = [
-  // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  // createData('Eclair', 262, 16.0, 24, 6.0),
-  // createData('Cupcake', 305, 3.7, 67, 4.3),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
 export function CustomizedTables() {
@@ -67,50 +66,44 @@ export function CustomizedTables() {
   return (
       rows.length !== 0?
     <TableContainer component={'div'}>
-      <Table  aria-label="customized table">
-        <InfiniteScroll
+      <InfiniteScroll
           dataLength={items.length}
           next={() => setItems((prev: any) => [...prev, ...rows])}
           hasMore={true}
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollDiv"
           endMessage={
-            <p style={{ textAlign: 'center' }}>
               <b>Yay! You have seen it all</b>
-            </p>
           }
         >
-          <TableHead>
-            <TableRow>
-              <StyledTableCell style={{paddingLeft: '4%'}}><MonserratTableHeader>Name</MonserratTableHeader></StyledTableCell>
-              <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
-              <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
-              <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
-              <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-
-
-                {items.map((item: any) => (
-                  <StyledTableRow key={item.name}>
-                    <StyledTableCell component="th" scope="row">
-                      <StyledRowStack>
-                        <Avatar src={avatar} small/>
-                        <MonserratTableData>{item.name}</MonserratTableData>
-                      </StyledRowStack>
-                    </StyledTableCell>
-                    <StyledTableCell align="center"><MonserratTableData>{item.calories}</MonserratTableData></StyledTableCell>
-                    <StyledTableCell align="center"><MonserratTableData>{item.fat}</MonserratTableData></StyledTableCell>
-                    <StyledTableCell align="center"><MonserratTableData>{item.carbs}</MonserratTableData></StyledTableCell>
-                    <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
-                  </StyledTableRow>
-                ))}
-          </TableBody>
-        </InfiniteScroll>
-
-      </Table>
+        <StyledTable  aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell style={{paddingLeft: '4%'}}><MonserratTableHeader>Name</MonserratTableHeader></StyledTableCell>
+                <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
+                <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
+                <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
+                <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+                  {items.map((item: any) => (
+                    <StyledTableRow key={item.name}>
+                      <StyledTableCell component="th" scope="row">
+                        <StyledRowStack>
+                          <Avatar src={avatar} small/>
+                          <MonserratTableData>{item.name}</MonserratTableData>
+                        </StyledRowStack>
+                      </StyledTableCell>
+                      <StyledTableCell align="center"><MonserratTableData>{item.calories}</MonserratTableData></StyledTableCell>
+                      <StyledTableCell align="center"><MonserratTableData>{item.fat}</MonserratTableData></StyledTableCell>
+                      <StyledTableCell align="center"><MonserratTableData>{item.carbs}</MonserratTableData></StyledTableCell>
+                      <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+            </TableBody>
+        </StyledTable>
+      </InfiniteScroll>
     </TableContainer> : <Placeholder />
   );
 }
@@ -118,4 +111,7 @@ export function CustomizedTables() {
 const StyledRowStack = styled(RowStack)(({theme}) => ({
   alignItems: 'center',
   boxShadow: 'none',
+}));
+const StyledTable = styled(Table)(({theme}) => ({
+  margin: '0rem 1rem',
 }));

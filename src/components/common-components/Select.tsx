@@ -13,28 +13,29 @@ import {SmallSpacedStack} from "../mini-components/Stack";
 
 interface selectProps {
     items: option[],
-    onSelect: (e: React.ChangeEvent<HTMLInputElement>)=> string,
+    handleTextChanged: (e: React.ChangeEvent<HTMLInputElement>)=> string,
     value: string,
     name: string,
     placeholder?: string,
     required?: object| string| boolean,
-    errorString?: string
+    errorString?: string,
+    half?: any
 }
 
-export const Select = ({errorString, items, required, placeholder, value, onSelect, name, ...others}: selectProps) => {
+export const Select = ({errorString, half, items, required, placeholder, value, handleTextChanged, name, ...others}: selectProps) => {
     const selectPopupRef = useRef<PopupActions>(null);
     const selectButtonRef = useRef<HTMLButtonElement>(null);
     const border = `1px solid ${required || errorString? theme.palette.error.light : theme.palette.grey[700]}`
     const onOptionSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         selectPopupRef?.current?.close();
-        onSelect(e);
+        handleTextChanged(e);
     }
     return (
         <SmallSpacedStack direction={'row'} alignItems={'center'}>
         <Popup
             ref={selectPopupRef}
             trigger={
-            <StyledTriggerContainer>
+            <StyledTriggerContainer half={half}>
                 <StyledSelectButton ref={selectButtonRef} sx={{border: border,}}>
                 <Poppins >{ value ||placeholder}</Poppins>
                 <KeyboardDoubleArrowDownIcon/>
@@ -56,8 +57,8 @@ export const Select = ({errorString, items, required, placeholder, value, onSele
     );
 };
 
-const StyledTriggerContainer = styled('div')(()=> ({
-    width: '50%',
+const StyledTriggerContainer = styled('div')<any>(({theme, half})=> ({
+    width: half? '50%': '90%',
 }));
 
 const StyledSelectButton = styled(Button)(({theme}) => ({
