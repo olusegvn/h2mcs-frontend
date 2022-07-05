@@ -41,4 +41,21 @@ const StyledBrowserBodyContainer = styled(Box)(({theme}) => ({
     marginRight: '2%',
     padding: '4% 3% 0%',
     overflow: 'auto',
+    height: "100%",
+      '&::-webkit-scrollbar': {
+        width: '0.4rem',
+          borderRadius: '.5rem',
+
+      },
+      '&::-webkit-scrollbar-track': {
+        boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+        webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+
+      },
+      '&::-webkit-scrollbar-thumb': {
+        // backgroundColor: 'rgba(0,0,0,.1)',
+        outline: '1px solid slategrey',
+          borderRadius: '.5rem',
+          backgroundColor: theme.palette.divider
+      }
 }));
