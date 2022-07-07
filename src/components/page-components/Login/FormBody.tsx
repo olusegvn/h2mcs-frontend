@@ -25,7 +25,7 @@ const FormBody = ({control, errorString, errors}: any) => {
         loginAs: ""
     }
     const [formValues, setFormValues] = useState(initialFormValues);
-    const handleTextChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTextChanged = (event: any) => {
         const {name, value} = event.target;
         setFormValues({...formValues, [name]: value})
         return value;

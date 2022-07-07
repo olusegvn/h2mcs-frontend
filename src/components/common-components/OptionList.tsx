@@ -34,7 +34,7 @@ export const OptionList = ({onChange, parentButtonRef, parentName, items, select
                         name={parentName}
                         value={value}
                         key={index}
-                        onClick={() => {onChange(event);return action? action(event):null}}>
+                        onClick={() => {onChange && onChange(event);return action? action(event):null}}>
                         <MonserratListOption>{name}</MonserratListOption>
                         {severity && <Circle color={severityObject[severity]}/>}
                     </OptionButton>
@@ -48,6 +48,8 @@ export const OptionList = ({onChange, parentButtonRef, parentName, items, select
 
 export const StyledOptionsContainer = styled(Stack)(({theme, }) => ({
     filter:'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
+    position: 'static',
+    zIndex: '1000',
 }));
 
 

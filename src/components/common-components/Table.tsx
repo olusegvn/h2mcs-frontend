@@ -84,6 +84,7 @@ export function CustomizedTables() {
                 <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
                 <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
                 <StyledTableCell align={'center'}><MonserratTableHeader>Patient ID</MonserratTableHeader></StyledTableCell>
+                <StyledTableCell align={'center'}><MonserratTableHeader> </MonserratTableHeader></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -98,6 +99,7 @@ export function CustomizedTables() {
                       <StyledTableCell align="center"><MonserratTableData>{item.calories}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.fat}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.carbs}</MonserratTableData></StyledTableCell>
+                      <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
                     </StyledTableRow>
                   ))}
@@ -114,4 +116,5 @@ const StyledRowStack = styled(RowStack)(({theme}) => ({
 }));
 const StyledTable = styled(Table)(({theme}) => ({
   margin: '0rem 1rem',
+  width: '95%',
 }));

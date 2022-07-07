@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Button, Paper, Stack} from "@mui/material";
+import {Button, Paper, SelectChangeEvent, Stack} from "@mui/material";
 import Popup from "reactjs-popup";
 import {option, OptionList} from "./OptionList";
 import {Poppins} from "../mini-components/Typography";
@@ -11,9 +11,9 @@ import {Icon} from "@iconify/react";
 import warningIcon from "@iconify/icons-emojione-v1/warning";
 import {SmallSpacedStack} from "../mini-components/Stack";
 
-interface selectProps {
+export interface selectProps {
     items: option[],
-    handleTextChanged: (e: React.ChangeEvent<HTMLInputElement>)=> string,
+    handleTextChanged: (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent<any>)=> string,
     value: string,
     name: string,
     placeholder?: string,
@@ -33,12 +33,14 @@ export const Select = ({errorString, half, items, required, placeholder, value, 
     return (
         <SmallSpacedStack direction={'row'} alignItems={'center'}>
         <Popup
+            nested
+            position="bottom center"
             ref={selectPopupRef}
             trigger={
             <StyledTriggerContainer half={half}>
                 <StyledSelectButton ref={selectButtonRef} sx={{border: border,}}>
-                <Poppins >{ value ||placeholder}</Poppins>
-                <KeyboardDoubleArrowDownIcon/>
+                    <Poppins >{ value ||placeholder}</Poppins>
+                    <KeyboardDoubleArrowDownIcon/>
                 </StyledSelectButton>
             </StyledTriggerContainer>}
         >

@@ -16,7 +16,7 @@ function CustomSelect({ RootButton, ...others}: any) {
   return <SelectUnstyled {...others} components={components} />;
 }
 
-export function Select({items, placeholder, ...others}: any) {
+export function SSelect({items, placeholder, ...others}: any) {
   const [currentItem, setCurrentItem] = useState<string>(items[0]);
   return (
       <CustomSelect value={currentItem} onChange={setCurrentItem} {...others}>
