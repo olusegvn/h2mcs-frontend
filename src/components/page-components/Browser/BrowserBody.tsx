@@ -1,25 +1,27 @@
 import React from 'react';
-import CustomTabs from "../../common-components/Tabs";
 import BrowserHeader from "./BrowserHeader";
 import Drawer from "./Drawer";
 import {styled} from "@mui/material/styles";
 import {Stack} from "@mui/material";
 import {RowStack} from "../../mini-components/Stack";
 import Box from "@mui/material/Box";
+import store from '../../../app/store'
+import {Provider} from 'react-redux';
 
 const BrowserBody = ({name, icon, Component}: {name: string, icon: string, Component: any}) => {
     return (
-        <>
-        <BrowserHeader name={name}/>
-        <StyledRowStack>
-            <Drawer name={name}/>
-            <StyledChidrenContainer>
-                <StyledBrowserBodyContainer id={'scrollDiv'}>
-                    <Component icon={icon} />
-                </StyledBrowserBodyContainer>
-            </StyledChidrenContainer>
-        </StyledRowStack>
-        </>
+        <Provider store={store}>
+            <BrowserHeader name={name}/>
+            <StyledRowStack>
+                <Drawer name={name}/>
+                <StyledChidrenContainer>
+                    <StyledBrowserBodyContainer id={'scrollDiv'}>
+                        <Component icon={icon} />
+                    </StyledBrowserBodyContainer>
+                </StyledChidrenContainer>
+            </StyledRowStack>
+        </Provider>
+
     );
 };
 
@@ -59,3 +61,4 @@ const StyledBrowserBodyContainer = styled(Box)(({theme}) => ({
           backgroundColor: theme.palette.divider
       }
 }));
+

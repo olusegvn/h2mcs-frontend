@@ -3,15 +3,17 @@ import { createSlice } from '@reduxjs/toolkit'
 export const activeSlice = createSlice({
   name: 'active',
   initialState: {
-    active: ""
+    value: ""
   },
   reducers: {
     setActive: (state, action) => {
-      state.active += action.payload
+      state.value = action.payload
     }
   }
 })
 
 export const { setActive } = activeSlice.actions
+export const getActive = (state: any) => state.activePage.value
+
 
 export default activeSlice.reducer

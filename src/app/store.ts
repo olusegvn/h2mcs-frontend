@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import activeReducer from '../reducers/active'
+import activeReducer from '../Slices/active'
 
 export default configureStore({
   reducer: {
-    active: activeReducer,
+    activePage: activeReducer,
   }
 })
