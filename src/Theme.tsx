@@ -6,6 +6,7 @@ const theme = createTheme({
     common: {white: '#E9EAED'},
     success: { light: '#1DC9A0', main: '#1DC9A0' },
     info: { main: '#EA454C' },
+    warning: { main: '#EA454C' },
     divider: '#ECECECFF',
     error: {
       main: '#E36363',

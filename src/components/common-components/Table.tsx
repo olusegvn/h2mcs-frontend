@@ -14,6 +14,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from "react";
 import Placeholder from "./PlaceHolder";
 import {popup} from "../../assets/TablePopup";
+import Consultation from "../page-components/Popup/Consultation";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -101,7 +102,7 @@ export function CustomizedTables() {
                       <StyledTableCell align="center"><MonserratTableData>{item.fat}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.carbs}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
-                      <StyledTableCell align="center">{<popup.Consultation/>}</StyledTableCell>
+                      <StyledTableCell align="center">{<popup.Prescriptions/>}</StyledTableCell>
                     </StyledTableRow>
                   ))}
             </TableBody>

@@ -74,7 +74,6 @@ const StyledDiv = styled(RowStack)(({theme}) => ({
     marginRight: '3%',
     paddingTop: '.5%',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
 }));
 
 const StyledModalContainer = styled('div')(({theme}) => ({

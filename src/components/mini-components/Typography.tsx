@@ -114,3 +114,27 @@ export const MonserratTableData = styled(Monserrat400)(({theme}) => ({
     color: theme.palette.text.secondary,
     paddingLeft: '7%',
 }));
+
+export const Inter = styled(({fw, s='1rem', ...props}: any) =>
+(
+    <Typography
+        sx={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: s,
+            textTransform: 'none',
+            fontWeight: fw,
+        }}
+        {...props}
+    />
+))();
+
+export const InterConsultText = (props: any) => <Inter500
+    s={'1rem'}
+    sx={{
+        lineHeight: '3rem',
+    }} {...props}/>;
+
+
+export const Inter600 = (props: any) => <Inter fw={600} s='.8rem' {...props}/>;
+export const Inter500 = (props: any) => <Inter fw={500} s='.8rem' {...props}/>;
+export const Inter300 = (props: any) => <Inter fw={300} s='.8rem' {...props}/>;
