@@ -37,7 +37,7 @@ const LoginForm = () => {
         return setErrorString('invalid login details')
       }
       dispatch(setPermissions(['name', 'surgeries']));
-      navigate('/Overview')
+      navigate('/overview')
     };
     return (
       <SignInContainer>

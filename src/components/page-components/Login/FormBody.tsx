@@ -38,29 +38,6 @@ const FormBody = ({control, errorString, errors, handleTextChanged, formValues}:
                 placeholder={'password'}
             />)}
           />
-        <Controller control={control} name={'loginAs'} rules={{required: 'Select a category'}} render={({field}) => (
-            <Select
-                {...field}
-                errorString={errorString}
-                required={errors.loginAs}
-                name={'loginAs'}
-                placeholder={'Login As...'}
-                value={formValues.loginAs}
-                handleTextChanged={handleTextChanged}
-                items={categoryOptions}/>
-        )}/>
-        <Controller control={control} name={'category'} rules={{required: 'Select a category'}} render={({field}) => (
-            <Select
-                {...field}
-                errorString={errorString}
-                required={errors.category}
-                name={'category'}
-                placeholder={'Category...'}
-                value={formValues.category}
-                handleTextChanged={handleTextChanged}
-                items={loginOptions}/>
-        )}/>
-
         <SmallSpacedStack>
             <StyledSignInButton type={'submit'} ><Poppins600>Sign in</Poppins600></StyledSignInButton>
             <StyledTextButton><StyledPoppins400>Forgot password</StyledPoppins400></StyledTextButton>

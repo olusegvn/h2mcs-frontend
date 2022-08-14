@@ -1,16 +1,20 @@
 import React from 'react';
-import {Controller} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import useCustomForm from "./hooks/useCustomForm";
 import {styled} from "@mui/material/styles";
 import {RowStack} from "../../mini-components/Stack";
 import {FormInterface} from "../../../assets/Forms";
+import {Grid} from "@mui/material";
 
-export const Form = ({fields, Submit, onSubmit, ContainerComponent={RowStack}}: FormInterface) => {
-    const {errors, control, errorString, handleTextChanged, formValues, handleSubmit} = useCustomForm({fields})
+export const Form = ({fields, Submit, onSubmit, errors, control,
+                         errorString, handleTextChanged, formValues,
+                         globalSize, ContainerComponent={RowStack}}: any) => {
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <ContainerComponent spacing={4}>
-                {fields?.map(({name, InputComponent, placeholder, label, size=2, ...others}) => (
+                {fields?.map(({name, InputComponent, placeholder, label, size=2, ...others}: any) => {
+                    size = globalSize ?? size
+                    return (
                     <StyledInputContainre size={size}>
                         <Controller control={control} name={name} {...others} render={({field}) => (
                             <InputComponent
@@ -26,14 +30,14 @@ export const Form = ({fields, Submit, onSubmit, ContainerComponent={RowStack}}: 
                             />)}
                             />
                     </StyledInputContainre>
-                ))}
+                )})}
             <Submit type="submit">Submit</Submit>
             </ContainerComponent>
         </form>
     );
 };
 
-const StyledInputContainre = styled('div')<any>(({theme, size})=> ({
+const StyledInputContainre = styled((props: any) => <Grid item {...props}/>)(({theme, size})=> ({
     width: `${size * 30}%`,
 }));
 

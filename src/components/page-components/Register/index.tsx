@@ -1,6 +1,6 @@
 import SignInContainer from "../../common-components/SignInContainer";
 import Form from "../../common-components/CustomForm/Form";
-import {form, registerForm} from "../../../assets/Forms";
+import {form, adminRegistrationForm} from "../../../assets/Forms";
 import {SpacedStack} from "../../mini-components/Stack";
 import FormHeader from "../Login/FormHeader";
 import React from "react";
@@ -13,14 +13,27 @@ import {useRegisterForm} from "./hooks/useRegisterForm";
 import useCustomForm from "../../common-components/CustomForm/hooks/useCustomForm";
 
 const Register = (): JSX.Element => {
-    const {onSubmit} = useRegisterForm()
-    const {errorString, errors} = useCustomForm({...registerForm})
+    const {Submit, fields, ContainerComponent} = adminRegistrationForm
+    const {errorString, setErrorString, errors, formValues, handleSubmit, ...rest} = useCustomForm({fields})
+    const {onSubmit} = useRegisterForm({formValues, setErrorString, handleSubmit})
     return (
         <SignInContainer>
             <SpacedStack>
                 <FormHeader errorString={errorString} validationErrors={errors}/>
-                <Form onSubmit={onSubmit} {...registerForm} />
-                <StyledLink to={ROUTES.LOGIN}><StyledTextButton><StyledPoppins400>Sign in</StyledPoppins400></StyledTextButton></StyledLink>
+                <Form
+                    onSubmit={onSubmit}
+                    ContainerComponent={ContainerComponent}
+                    Submit={Submit}
+                    fields={fields}
+                    errors={errors}
+                    formValues={formValues}
+                    {...rest}
+                />
+                <StyledLink to={ROUTES.LOGIN}>
+                    <StyledTextButton>
+                    <StyledPoppins400>Sign in</StyledPoppins400>
+                    </StyledTextButton>
+                </StyledLink>
             </SpacedStack>
         </SignInContainer>
     );

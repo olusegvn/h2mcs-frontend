@@ -8,10 +8,13 @@ import {OptionList} from "../../common-components/OptionList";
 import Popup from "reactjs-popup";
 import {StyledSelectOptionButton, StyledSelectOptionsContainer} from "../../common-components/Select";
 import {PopupActions} from "reactjs-popup/dist/types";
-import {Button, Modal, Stack, Typography} from "@mui/material";
-import {form, registerForm} from "../../../assets/Forms";
+import {Button, Grid, Modal, Stack, Typography} from "@mui/material";
+import {form, adminRegistrationForm, doctorRegistrationForm} from "../../../assets/Forms";
 import Form from "../../common-components/CustomForm/Form";
 import register from "../Register";
+import useCustomForm from "../../common-components/CustomForm/hooks/useCustomForm";
+import {useRegisterForm} from "../Register/hooks/useRegisterForm";
+import RegisterModal from "../../common-components/RegisterModal";
 
 const addOptions = [
     {name: 'doctor', value: 'doctor'},
@@ -24,6 +27,10 @@ const BrowserHeader = ({name}: {name?: string}) => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const handleClose = () => {setModalOpen(false);};
     const selectAction = (e: any) => {selectPopupRef?.current?.close();setModalOpen(true)}
+    const {Submit, fields, ContainerComponent, globalSize} = doctorRegistrationForm
+    const {errorString, setErrorString, errors, formValues, handleSubmit, ...rest} = useCustomForm({fields})
+    const {onSubmit} = useRegisterForm({formValues, setErrorString, handleSubmit})
+
     return (
         <StyledDiv>
             <Modal
@@ -35,7 +42,16 @@ const BrowserHeader = ({name}: {name?: string}) => {
                 aria-describedby="modal-modal-description"
                 >
                 <StyledModalContainer>
-                  <Form {...registerForm}/>
+                    <Form
+                        onSubmit={onSubmit}
+                        ContainerComponent={ContainerComponent}
+                        Submit={Submit}
+                        fields={fields}
+                        errors={errors}
+                        formValues={formValues}
+                        globalSize={globalSize}
+                        {...rest}
+                    />
                 </StyledModalContainer>
             </Modal>
             <PoppinsPageTitle>{name}</PoppinsPageTitle>
@@ -75,15 +91,14 @@ const StyledDiv = styled(RowStack)(({theme}) => ({
     justifyContent: 'space-between',
 }));
 
-const StyledModalContainer = styled('div')(({theme}) => ({
+const StyledModalContainer = styled(Grid)(({theme}) => ({
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    background: 'white',
-    color: 'blue',
+    background: 'transparent',
     zIndex: '0',
-    padding: '1rem',
+    width: '70vw',
 }));
 
 const StyledActionButton = (props: any) => <ActionButton

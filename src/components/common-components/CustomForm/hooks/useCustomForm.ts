@@ -3,12 +3,7 @@ import {useForm} from "react-hook-form";
 
 
 export default function useCustomForm({fields}: any){
-    const initialFormValues: any = {
-        username: "",
-        password: "",
-        category: "",
-        loginAs: ""
-    }
+    const initialFormValues: any = {}
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errorString, setErrorString] = useState();
     const {control, handleSubmit, formState:{errors}} = useForm();

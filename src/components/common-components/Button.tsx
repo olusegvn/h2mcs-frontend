@@ -21,6 +21,23 @@ export const LargeButton = styled((props: any) => {
     );
 })();
 
+export const FormActionButton = styled((props: any) => {
+    return (
+        <Button
+            variant={'contained'}
+            style={{
+                boxShadow: 'none',
+                filter: 'none',
+                borderRadius: '2rem',
+                textTransform: 'none',
+                padding: '.5rem .7rem',
+                margin: '2rem',
+            }}
+            {...props}
+        />
+    );
+})();
+
 export const ActionButton = styled((props: any) => {
     return (
         <Button
