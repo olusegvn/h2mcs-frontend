@@ -1,11 +1,11 @@
 import { createTheme } from '@mui/material/styles'
-const theme = createTheme({
+const theme: any = createTheme({
   palette: {
-    primary: { main: '#D7024E' },
-    secondary: {light: '#48AAF1', main: '#20243D', dark: '#20243D'},
+    primary: {  main: '#D7024E' },
+    secondary: {light: '#48AAF1', main: '#20243D', dark: '#1A55AF', 900: '#5843BE'},
     common: {white: '#E9EAED'},
-    success: { light: '#1DC9A0', main: '#1DC9A0' },
-    info: { main: '#EA454C' },
+    success: { light: '#1DC9A0', main: '#1DC9A0', dark: '#427A0A' },
+    info: { light: '#FA5F1C', main: '#EA454C' },
     warning: { main: '#EA454C' },
     divider: '#ECECECFF',
     error: {

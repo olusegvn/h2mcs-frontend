@@ -7,7 +7,6 @@ import {styled} from "@mui/material/styles";
 import FormControl from '@mui/material/FormControl';
 
 const MUISelect = ({placeholder, value, name, handleTextChanged, items}: selectProps) => {
-    console.log(value);
     return (
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>

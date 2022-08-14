@@ -63,10 +63,10 @@ const CustomTabs: () => JSX.Element = () => {
                 <CustomizedTables />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <CustomizedTables />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Something
+                <CustomizedTables />
             </TabPanel>
         </StyledTabsContainer>
     );

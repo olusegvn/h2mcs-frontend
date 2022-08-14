@@ -82,9 +82,20 @@ export const PoppinsNavLink = ({...others}: any) => (
     <Poppins600 sx={{color: 'inherit'}} s={'1.1vw'} {...others} />
 );
 
+export const PoppinsStatName = ({...others}: any) => (
+    <Poppins400 sx={{color: '#6F767E'}} s={16} {...others} />
+);
+
+export const PoppinsStatValue = ({...others}: any) => (
+    <Poppins400 sx={{color: 'black'}} s={21} {...others} />
+);
+export const PoppinsChartHeader = ({...others}: any) => (
+    <Poppins500 sx={{color: '#0B1354'}} s={33} {...others} />
+);
 
 
 export const Poppins400 = (props: any) => <Poppins fw={400} {...props}/>;
+export const Poppins500 = (props: any) => <Poppins fw={500} {...props}/>;
 export const Poppins700 = (props: any) => <Poppins fw={700} s={'2.5rem'} {...props}/>;
 
 

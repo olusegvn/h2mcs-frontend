@@ -17,19 +17,9 @@ const loginOptions = [
     {name: 'Something else', value: 'Something else'}
 ]
 
-const FormBody = ({control, errorString, errors}: any) => {
-    const initialFormValues = {
-        username: "",
-        password: "",
-        category: "",
-        loginAs: ""
-    }
-    const [formValues, setFormValues] = useState(initialFormValues);
-    const handleTextChanged = (event: any) => {
-        const {name, value} = event.target;
-        setFormValues({...formValues, [name]: value})
-        return value;
-    }
+const FormBody = ({control, errorString, errors, handleTextChanged, formValues}: any) => {
+
+
     return (
         <>
         <Controller control={control} name={'username'} rules={{required: 'Fill in field'}} render={({field}) => (
@@ -72,7 +62,7 @@ const FormBody = ({control, errorString, errors}: any) => {
         )}/>
 
         <SmallSpacedStack>
-            <StyledSignInButton type={'submit'}><Poppins600>Sign in</Poppins600></StyledSignInButton>
+            <StyledSignInButton type={'submit'} ><Poppins600>Sign in</Poppins600></StyledSignInButton>
             <StyledTextButton><StyledPoppins400>Forgot password</StyledPoppins400></StyledTextButton>
         </SmallSpacedStack>
         </>
@@ -81,9 +71,9 @@ const FormBody = ({control, errorString, errors}: any) => {
 
 export default FormBody;
 
-const StyledTextButton = styled(Button)(({theme})=> ({width: '90%'}));
+export const StyledTextButton = styled(Button)(({theme})=> ({width: '90%'}));
 
-const StyledSignInButton = styled(LargeButton)(({theme}) => ({
+export const StyledSignInButton = styled(LargeButton)(({theme}) => ({
     backgroundColor: theme.palette.info.main
 }));
 

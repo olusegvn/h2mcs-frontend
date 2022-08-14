@@ -9,8 +9,9 @@ import Popup from "reactjs-popup";
 import {StyledSelectOptionButton, StyledSelectOptionsContainer} from "../../common-components/Select";
 import {PopupActions} from "reactjs-popup/dist/types";
 import {Button, Modal, Stack, Typography} from "@mui/material";
-import {form} from "../../../assets/Forms";
-import Form from "../../common-components/Form";
+import {form, registerForm} from "../../../assets/Forms";
+import Form from "../../common-components/CustomForm/Form";
+import register from "../Register";
 
 const addOptions = [
     {name: 'doctor', value: 'doctor'},
@@ -26,6 +27,7 @@ const BrowserHeader = ({name}: {name?: string}) => {
     return (
         <StyledDiv>
             <Modal
+                key={name}
                 keepMounted
                 open={modalOpen}
                 onClose={handleClose}
@@ -33,7 +35,7 @@ const BrowserHeader = ({name}: {name?: string}) => {
                 aria-describedby="modal-modal-description"
                 >
                 <StyledModalContainer>
-                  <Form {...form}/>
+                  <Form {...registerForm}/>
                 </StyledModalContainer>
             </Modal>
             <PoppinsPageTitle>{name}</PoppinsPageTitle>
@@ -49,8 +51,7 @@ const BrowserHeader = ({name}: {name?: string}) => {
 
                     </div>
                 </div>}
-            ><>
-
+            >
                 <OptionList
                     OptionButton={StyledSelectOptionButton}
                     selectAction={selectAction}
@@ -59,8 +60,6 @@ const BrowserHeader = ({name}: {name?: string}) => {
                     parentName={name}
                     parentButtonRef={selectButtonRef}
                 />
-                </>
-
             </Popup>
         </StyledDiv>
     );

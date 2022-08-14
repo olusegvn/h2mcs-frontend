@@ -13,8 +13,10 @@ import {RowStack} from "../mini-components/Stack";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from "react";
 import Placeholder from "./PlaceHolder";
-import {popup} from "../../assets/TablePopup";
+import {Popup} from "../../assets/TablePopup";
 import Consultation from "../page-components/Popup/Consultation";
+import {useSelector} from "react-redux";
+import {getActive} from "../../Slices/active";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -65,6 +67,9 @@ const rows: Array<object> = [
 
 export function CustomizedTables() {
   const [items, setItems] = useState(rows)
+  const active: string = useSelector(getActive);
+  const PopupComponent: any = Popup[active]
+  console.log(active)
   return (
       rows.length !== 0?
     <TableContainer component={'div'}>
@@ -102,7 +107,7 @@ export function CustomizedTables() {
                       <StyledTableCell align="center"><MonserratTableData>{item.fat}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.carbs}</MonserratTableData></StyledTableCell>
                       <StyledTableCell align="center"><MonserratTableData>{item.protein}</MonserratTableData></StyledTableCell>
-                      <StyledTableCell align="center">{<popup.Prescriptions/>}</StyledTableCell>
+                      <StyledTableCell align="center">{<PopupComponent/>}</StyledTableCell>
                     </StyledTableRow>
                   ))}
             </TableBody>

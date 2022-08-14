@@ -6,23 +6,12 @@ import {PopupActions} from "reactjs-popup/dist/types";
 import {styled} from "@mui/material/styles";
 import {Inter300, Inter500} from "../../mini-components/Typography";
 import {RowStack} from "../../mini-components/Stack";
+import TablePopup from "../../common-components/TablePopup";
 
 const StaffPopup = () => {
-    const selectPopupRef = useRef<PopupActions>(null);
     return (
         <div>
-            <Popup
-            position="bottom right"
-            nested
-            ref={selectPopupRef}
-            trigger={
-                <div>
-                    <IconButton>
-                        <MoreVertIcon/>
-                    </IconButton>
-                </div>
-            }
-            >
+            <TablePopup>
                 <PopupContainer spacing={4}>
                     <StyledTextField disabled={true} label={<StyledInter500>Name</StyledInter500>} value={'Jane Doe'}/>
                     <StyledTextField disabled={true} label={<StyledInter500>Name</StyledInter500>} value={'Jane Doe'}/>
@@ -35,30 +24,39 @@ const StaffPopup = () => {
                         <StyledButton color={'secondary'}>Dismiss</StyledButton>
                     </StyledRowStack>
                 </PopupContainer>
-            </Popup>
+            </TablePopup>
         </div>
     );
 };
 
 export default StaffPopup;
 
-const PopupContainer = styled(Stack)(({theme})=> ({
+export const PopupContainer = styled(Stack)(({theme})=> ({
     backgroundColor: '#FDFCFC',
     padding: '3rem',
 
 }));
 
-const StyledTextField = styled(TextField)(({theme}) => ({
-    background: '#FFFFFF',
-    // border: '0.1px solid #E8DDFF',
-    fontFamily: "'Inter', sans-serif",
-    fontWeight: 300,
-    border: 'none',
-    borderRadius: '10px',
-    color: 'blue',
-}))
+export const StyledTextField = (props: any) => (
+    <TextField
+        {...props}
+        inputProps={{
+            border: '0.1px solid #E8DDFF',
 
-const StyledInter500 = styled(Inter500)(({theme}) => ({
+        }}
+        sx={{
+            background: '#FFFFFF',
+            // border: '0.1px solid #E8DDFF',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            border: 'none',
+            borderRadius: '10px',
+            color: 'blue',
+        }}
+        />
+)
+
+export const StyledInter500 = styled(Inter500)(({theme}) => ({
     fontSize: '1rem',
     color: 'black',
 }))
@@ -67,11 +65,11 @@ const StyledInter300 = styled(Inter300)(({theme}) => ({
     fontSize: '1rem',
     color: '#676464',
 }))
-const StyledRowStack = styled(RowStack)(({theme}) => ({
+export const StyledRowStack = styled(RowStack)(({theme}) => ({
     fontSize: '1rem',
     color: '#676464',
 }))
-const StyledButton = styled((props: any) => (
+export const StyledButton = styled((props: any) => (
     <Button
         {...props}
         variant={'contained'}

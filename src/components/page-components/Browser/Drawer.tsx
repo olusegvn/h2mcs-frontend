@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {styled} from "@mui/material/styles";
 import {Stack} from "@mui/material";
 import {NavigationList, NavigationListItem} from "../../../assets/NaigationList";
@@ -24,7 +24,7 @@ const Drawer = ({name}: {name: string}) => {
     );
 };
 
-export default Drawer;
+export default memo(Drawer);
 
 const StyledDrawer = styled(Stack)(({theme}) => ({
     width: '16%',

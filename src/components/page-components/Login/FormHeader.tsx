@@ -10,7 +10,6 @@ interface FormHeaderProps{
 }
 
 const FormHeader = ({errorString, validationErrors}: FormHeaderProps) => {
-    console.log(validationErrors)
     let error;
     if(Object.keys(validationErrors||{}).length > 0){
         error=Object.values(validationErrors|| {})[0].message

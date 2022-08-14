@@ -16,24 +16,33 @@ import Popup from "reactjs-popup";
 import {PopupActions} from "reactjs-popup/dist/types";
 import {OptionList, StyledOptionButton} from "../../common-components/OptionList";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { getPermissoions, setPermissions } from '../../../Slices/permissions';
+import store from '../../../app/store';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
+import {ROUTES} from "../../../assets/consts";
 
-const profileOptions = [
-    {name: 'view profile', action:()=>{console.log('a')}},
-    {name: 'logout'}
-]
-
-const notificationItems = [
-    {name: 'Something', severity:1},
-    {name: 'Something', severity:2},
-    {name: 'Something', severity:3},
-    {name: 'Something', severity:4}
-]
 
 const BrowserAppBar = () => {
+    const navigate = useNavigate()
+    const profileOptions = [
+        {name: 'view profile', action:()=>{console.log('a')}},
+        {name: 'logout', action: ()=> {navigate(ROUTES.LOGIN);store.dispatch(setPermissions([]));}}
+    ]
+
+    const notificationItems = [
+        {name: 'Something', severity:1},
+        {name: 'Something', severity:2},
+        {name: 'Something', severity:3},
+        {name: 'Something', severity:4}
+    ]
+
     const ref = useRef<PopupActions>(null);
+    useAuth();
     return (
         <StyledAppBar elevation={0}>
             <Toolbar>
+
                 <img src={logo} height={40}/>
                 <PoppinsTitle>H2MCS</PoppinsTitle>
                 <StyledSearchContainer>
@@ -78,6 +87,7 @@ const StyledNotificationsNoneIcon = styled(NotificationsNoneIcon)(({theme}) => (
 }));
 
 const StyledSearchContainer = styled(FlexGrowBox)(({theme}) => ({
+    flexGrow: 1,
     paddingLeft: '10%',
 }));
 

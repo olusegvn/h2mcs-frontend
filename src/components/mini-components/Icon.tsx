@@ -8,6 +8,16 @@ export const NavigationLinkIcon = ({icon}: { icon: string }) => (<Icon
     />
 );
 
+export const StatisticIcon = ({icon}: { icon: string}) => (<Icon
+    height={26}
+    icon={icon}
+    style={{
+        opacity: 1,
+
+    }}
+    />
+);
+
 export const PlaceholderIcon = ({icon}: { icon: string }) => (<Icon
     height={'50vh'}
     icon={icon}

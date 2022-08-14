@@ -17,18 +17,15 @@ import { Icon } from '@iconify/react';
 import {ActionButton} from "../../common-components/Button";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import theme from "../../../Theme";
+import AttachedFile from '../../common-components/AttachedFile';
 
 const Consultation = () => {
-    let canEdit = false;
+    let canEdit = true;
     const [files, setFiles] = useState([]);
     const [prescription, setPrescription] = useState();
     const [comment, setComment] = useState("");
     const selectPopupRef = useRef<PopupActions>(null);
-    let datePrintOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' } as any;
 
-    const truncate: (str: string, n: number)=> string = (str, n) => {
-		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-	};
     return (
         <Popup
             position="bottom right"
@@ -48,16 +45,9 @@ const Consultation = () => {
                 <StyledTextField disabled={!canEdit} value={comment} onChange={(e: any)=> setComment(e.target.value)} rows={3} maxRows={4-Number(canEdit)}  label="comment"/>
                 <StyledTextField disabled={!canEdit} value={prescription} onChange={(e: any)=> setPrescription(e.target.value)} rows={2} maxRows={3-Number(canEdit)}  label="Prescription" />
                 <StyledAttachRowStack>
-                {files.map(({name, lastModifiedDate}: any) => (
-                    <StyledAttachedDocumentContainer>
-                        <StyledPdfIcon height={'50'} icon="ant-design:file-pdf-outlined"/>
-                        <Stack>
-                            <Inter500>{truncate(name, 20) }</Inter500>
-                            <Inter300>{new Date(lastModifiedDate).toLocaleString("en-US", datePrintOptions)}</Inter300>
-
-                        </Stack>
-                    </StyledAttachedDocumentContainer>
-                ))}
+                    {files.map((file: any) => (
+                        <AttachedFile file={file}/>
+                    ))}
                 </StyledAttachRowStack>
 
                     {canEdit &&
@@ -77,6 +67,7 @@ const Consultation = () => {
                     }
             </StyledPopupContainer>
         </Popup>
+
 
     );
 };
@@ -106,9 +97,7 @@ const StyledActionButton = styled(ActionButton)(({theme}) => ({
     width: '7rem',
     height: '2.5rem',
 }));
-const StyledPdfIcon = styled(Icon)(({theme}) => ({
-    width: '6rem',
-}));
+
 
 const StyledAttachFileIcon = styled((props: any) => (
     <AttachFileIcon

@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BrowserHeader from "./BrowserHeader";
 import Drawer from "./Drawer";
 import {styled} from "@mui/material/styles";
 import {Stack} from "@mui/material";
 import {RowStack} from "../../mini-components/Stack";
 import Box from "@mui/material/Box";
-import store from '../../../app/store'
-import {Provider} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getPermissoions } from '../../../Slices/permissions';
+import { useAuth } from '../../../hooks/useAuth';
+
 
 const BrowserBody = ({name, icon, Component}: {name: string, icon: string, Component: any}) => {
     return (
-        <Provider store={store}>
+        <>
             <BrowserHeader name={name}/>
             <StyledRowStack>
                 <Drawer name={name}/>
@@ -20,9 +23,9 @@ const BrowserBody = ({name, icon, Component}: {name: string, icon: string, Compo
                     </StyledBrowserBodyContainer>
                 </StyledChidrenContainer>
             </StyledRowStack>
-        </Provider>
-
+        </>
     );
+
 };
 
 export default BrowserBody;
